@@ -24,7 +24,20 @@
       <tr>
         <td><%= p.full_name %></td>
         <td><%= p.full_name_kana %></td>
-        <td class="email"><%= p.email %></td>
+
+        <% if p.email2.present? %> <%# if p.email2.nil? で下の順序逆のパターンはなぜダメなのか %>
+          <td class="email"><ul><li><%= p.email %></li><br><li><%= p.email2 %></li></ul></td>
+        <% else %>
+          <td class="email"><%= p.email %></td>
+        <% end %>
+
+        <% if p.email2.blank? %> <%# if p.email2.nil? で下の順序逆のパターンはなぜダメなのか %>
+          <td class="email"><%= p.email %></td>
+        <% else %>
+          <td class="email"><ul><li><%= p.email %></li><br><li><%= p.email2 %></li></ul></td>
+        <% end %>
+
+
         <td class="date"><%= p.birthday %></td>
         <td><%= p.gender %></td>
         <td class="actions">

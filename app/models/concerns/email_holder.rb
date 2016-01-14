@@ -9,8 +9,9 @@ module EmailHolder
       self.email_for_index = email.downcase if email
     end
 
-    validates :email, presence: true, email: { allow_blank: true }
+    #validates :email, presence: true, email: { allow_blank: true }
     validates :email_for_index, uniqueness: { allow_blank: true }
+    validates :email_for_index, uniqueness: { scope: [:email2], allow_blank: true }
 
     after_validation do
       if errors.include?(:email_for_index)
